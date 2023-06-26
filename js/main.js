@@ -28,9 +28,10 @@ const getRandomInteger = (a, b) => {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
-function getRandomNoRepeatInteger (min, max) {
+
+const getRandomNoRepeatInteger = (min, max) => {
   const previousValues = [];
-  return function () {
+  return () => {
     let currentValue = getRandomInteger(min, max);
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomInteger(min, max);
@@ -38,7 +39,7 @@ function getRandomNoRepeatInteger (min, max) {
     previousValues.push(currentValue);
     return currentValue;
   };
-}
+};
 
 const randomCommentsId = getRandomNoRepeatInteger(1, 500);
 const randomAvatarUrlNumber = getRandomInteger(1,6);
@@ -55,7 +56,7 @@ const randomFotoId = getRandomNoRepeatInteger(1, GENERATE_CARD_COUNT);
 const randomUrl = getRandomNoRepeatInteger(1, GENERATE_CARD_COUNT);
 const randomLikes = getRandomInteger(15, 200);
 const amountComments = getRandomInteger (1, 30);
-const generateComments = Array.from({length: amountComments}, createComment);
+const generatedComments = Array.from({length: amountComments}, createComment);
 
 
 const createCard = () => ({
@@ -63,10 +64,10 @@ const createCard = () => ({
   url:`photos/${randomUrl()}.jpg`,
   description: 'Очень красивое описание фотографии',
   likes: randomLikes,
-  comments:[generateComments]
+  comments:generatedComments,
 });
-const generateCards = Array.from({length: GENERATE_CARD_COUNT}, createCard);
+const generatedCards = Array.from({length: GENERATE_CARD_COUNT}, createCard);
 
 export {
-  generateCards
+  generatedCards
 };
