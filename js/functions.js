@@ -20,4 +20,5 @@ export {
   checkStringLength,
   isPalindrome,
   isExtractNumber,
-  isReductionLength};
+  isReductionLength,
+};
