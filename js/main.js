@@ -44,7 +44,7 @@ const randomCommentsId = getRandomNoRepeatInteger(1, 500);
 const randomAvatarUrlNumber = getRandomInteger(1,6);
 const randomMessageText = COMMENTS[getRandomInteger(0, COMMENTS.length - 1)];
 const randomNameAutor = NAMES[getRandomInteger(0, NAMES.length - 1)];
-const createComments = () => ({
+const createComment = () => ({
   id: randomCommentsId(),
   avatar: `img/avatar-${randomAvatarUrlNumber}.svg`,
   message: randomMessageText,
@@ -54,6 +54,8 @@ const createComments = () => ({
 const randomFotoId = getRandomNoRepeatInteger(1, GENERATE_CARD_COUNT);
 const randomUrl = getRandomNoRepeatInteger(1, GENERATE_CARD_COUNT);
 const randomLikes = getRandomInteger(15, 200);
+const amountComments = getRandomInteger (1, 30);
+const generateComments = Array.from({length: amountComments}, createComment);
 
 
 const createCard = () => ({
@@ -61,7 +63,10 @@ const createCard = () => ({
   url:`photos/${randomUrl()}.jpg`,
   description: 'Очень красивое описание фотографии',
   likes: randomLikes,
-  comments:[createComments()]
+  comments:[generateComments]
 });
-const generateCard = Array.from({length: GENERATE_CARD_COUNT}, createCard);
+const generateCards = Array.from({length: GENERATE_CARD_COUNT}, createCard);
 
+export {
+  generateCards
+};
